@@ -29,7 +29,7 @@ export default function PageLinks() {
         <Link
           key={nav.href}
           href={nav.href}
-          className="px-5 hover:opacity-60 transition-all delay-50"
+          className="px-5 hover:opacity-60 transition-all delay-50 text-md"
         >
           {nav.directory}
         </Link>
