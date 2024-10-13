@@ -1,0 +1,39 @@
+import Link from "next/link";
+
+export default function PageLinks() {
+  const navs = [
+    {
+      href: "/landscapes",
+      directory: "Landscapes",
+    },
+    {
+      href: "/portraits",
+      directory: "Portraits",
+    },
+    {
+      href: "/street_photography",
+      directory: "Street Photography",
+    },
+    {
+      href: "/about",
+      directory: "About",
+    },
+    {
+      href: "/contact",
+      directory: "Contact",
+    },
+  ];
+  return (
+    <div>
+      {navs.map((nav) => (
+        <Link
+          key={nav.href}
+          href={nav.href}
+          className="px-5 hover:opacity-60 transition-all delay-50"
+        >
+          {nav.directory}
+        </Link>
+      ))}
+    </div>
+  );
+}
