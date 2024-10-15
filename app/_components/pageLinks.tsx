@@ -14,10 +14,7 @@ export default function PageLinks() {
       href: "/street_photography",
       directory: "Street Photography",
     },
-    {
-      href: "/about",
-      directory: "About",
-    },
+
     {
       href: "/contact",
       directory: "Contact",
@@ -29,7 +26,7 @@ export default function PageLinks() {
         <Link
           key={nav.href}
           href={nav.href}
-          className="px-5 hover:opacity-60 transition-all delay-50 text-md"
+          className="px-5 hover:opacity-60 transition-all delay-50 text-lg"
         >
           {nav.directory}
         </Link>

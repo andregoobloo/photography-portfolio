@@ -3,12 +3,12 @@ import PageLinks from "./pageLinks";
 
 export default function Navbar() {
   return (
-    <div className="uppercase flex flex-col items-center pb-10 z-20 relative">
+    <div className="uppercase flex flex-col items-center my-20 z-20 relative">
       <Link
         href="/"
-        className="py-10 hover:opacity-60 transition-all delay-50 text-xl"
+        className="pb-10 hover:opacity-60 transition-all delay-50 text-3xl"
       >
-        Andre Holzthum Photography
+        Andre Holzthum
       </Link>
       <PageLinks />
     </div>

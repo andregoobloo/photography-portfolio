@@ -1,46 +1,60 @@
-import s1 from "/app/public/street/s1.jpg";
-import s2 from "/app/public/street/s2.jpg";
-import s3 from "/app/public/street/s3.jpg";
-import s4 from "/app/public/street/s4.jpg";
+"use client";
+import LightGalleryComponent from "lightgallery/react";
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
 import Image from "next/image";
+import { useRef } from "react";
+import type { LightGallery } from "lightgallery/lightgallery";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { images } from "../_data/street";
 
 export default function Page() {
-  // const pictures = [
-  //   {
-  //     src: s1,
-  //     name: "Bern River",
-  //   },
-  //   {
-  //     src: s2,
-  //     name: "Paris sunset",
-  //   },
-  //   {
-  //     src: s3,
-  //     name: "Prague tower",
-  //   },
-  //   {
-  //     src: s4,
-  //     name: "Venice Houses",
-  //   },
-  // ];
-
-  const pictures = [s1, s2, s3, s4];
-
+  const lightboxRef = useRef<LightGallery | null>(null);
   return (
     <>
-      <main className=" w-4/5 mx-auto columns-1 sm:columns-2 lg:columns-3 py-10 md:py-20 gap-4">
-        {pictures.map((pic, idx) => (
-          <div className="mb-4 break-inside-avoid" key={idx}>
-            <Image
-              className="object-cover max-w-full  cursor-pointer hover:opacity-70 transition-all duration-250"
-              src={pic}
-              quality={100}
-              alt="placeholder"
-              placeholder="blur"
-            />
-          </div>
-        ))}
-      </main>
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{
+          450: 1,
+          640: 2,
+          728: 3,
+          1024: 4,
+          1280: 5,
+          1800: 6,
+        }}
+      >
+        <Masonry className="px-20 mx-auto sm:px-6" gutter="2rem">
+          {images.map((img, idx) => (
+            <div key={idx}>
+              <Image
+                className="cursor-pointer hover:opacity-80 transition-opacity duration-250 "
+                src={img}
+                alt="Street photography"
+                placeholder="blur"
+                loading="lazy"
+                height={500}
+                width={400}
+                onClick={() => {
+                  lightboxRef.current?.openGallery(idx);
+                }}
+              />
+            </div>
+          ))}
+          <LightGalleryComponent
+            onInit={(ref) => {
+              if (ref) {
+                lightboxRef.current = ref.instance;
+              }
+            }}
+            speed={500}
+            download={false}
+            dynamic={true}
+            dynamicEl={images.map((img) => ({
+              src: img.src,
+            }))}
+          />
+        </Masonry>
+      </ResponsiveMasonry>
     </>
   );
 }

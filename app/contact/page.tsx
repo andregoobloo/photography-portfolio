@@ -1,3 +1,10 @@
 export default function Page() {
-  return <div>cONTACT</div>;
+  return (
+    <div>
+      <form action="">
+        <label htmlFor="">Name</label>
+        <input type="text" name="name" />
+      </form>
+    </div>
+  );
 }
