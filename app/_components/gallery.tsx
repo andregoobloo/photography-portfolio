@@ -7,10 +7,13 @@ import Image from "next/image";
 import { useRef } from "react";
 import type { LightGallery } from "lightgallery/lightgallery";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import {
+  StaticImageData,
+  StaticImport,
+} from "next/dist/shared/lib/get-img-props";
 
 interface Props {
-  images: string[];
+  images: StaticImageData[];
 }
 
 export default function Gallery({ images }: Props) {
@@ -52,7 +55,6 @@ export default function Gallery({ images }: Props) {
             speed={500}
             download={false}
             dynamic={true}
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             dynamicEl={images.map((img) => ({
               src: img.src,
             }))}
