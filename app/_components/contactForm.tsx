@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import sendContactForm from "@/app/lib/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,7 @@ export default function ContactForm() {
   const [state, setState] = useState(initState);
   const { values } = state;
 
-  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setState((prev) => ({
       ...prev,
       values: {
@@ -24,6 +24,16 @@ export default function ContactForm() {
       },
     }));
   }
+
+  const handleChangeTA = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setState((prev) => ({
+      ...prev,
+      values: {
+        ...prev.values,
+        [event.target.name]: event.target.value,
+      },
+    }));
+  };
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -81,7 +91,7 @@ export default function ContactForm() {
               maxLength={500}
               className="text-zinc-900 bg-zinc-200 mb-8 p-2 text-2xl"
               value={values.message}
-              onChange={handleChange}
+              onChange={handleChangeTA}
             />
           </div>
           <button
