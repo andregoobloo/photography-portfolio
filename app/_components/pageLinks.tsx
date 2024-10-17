@@ -25,12 +25,12 @@ export default function PageLinks() {
     },
   ];
   return (
-    <div>
+    <div className="md:flex-row md:gap-5 lg:gap-10 flex flex-col">
       {navs.map((nav) => (
         <Link
           key={nav.href}
           href={nav.href}
-          className="px-5 hover:opacity-60 transition-all delay-50 text-lg"
+          className="hover:opacity-60 transition-all delay-50 text-lg"
         >
           {nav.directory}
         </Link>
