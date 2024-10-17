@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import sendContactForm from "@/app/lib/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,22 +15,18 @@ export default function ContactForm() {
   const [state, setState] = useState(initState);
   const { values } = state;
 
-  function handleChange({ target }) {
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
     setState((prev) => ({
       ...prev,
       values: {
         ...prev.values,
-        [target.name]: target.value,
+        [event.target.name]: event.target.value,
       },
     }));
   }
 
-  async function onSubmit(e) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // setState((prev) => ({
-    //   ...prev,
-    // }));
-
     await sendContactForm(values);
     setState(initState);
     toast.success("Message sent!", { position: "top-right" });
@@ -91,7 +87,6 @@ export default function ContactForm() {
           <button
             className="font-semibold text-zinc-900 bg-zinc-200 w-fit px-2 py-1 hover:opacity-70 transition-opacity duration-150 text-xl cursor-pointer"
             type="submit"
-            // disabled={!values.name || !values.email || !values.message}
           >
             Send Message
           </button>

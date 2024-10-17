@@ -7,8 +7,13 @@ import Image from "next/image";
 import { useRef } from "react";
 import type { LightGallery } from "lightgallery/lightgallery";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
-export default function Gallery({ images }) {
+interface Props {
+  images: string[];
+}
+
+export default function Gallery({ images }: Props) {
   const lightboxRef = useRef<LightGallery | null>(null);
   return (
     <>
@@ -23,7 +28,7 @@ export default function Gallery({ images }) {
         }}
       >
         <Masonry className="px-20 mx-auto sm:px-6" gutter="2rem">
-          {images.map((img, idx: number) => (
+          {images.map((img: string | StaticImport, idx: number) => (
             <div key={idx}>
               <Image
                 className="cursor-pointer hover:opacity-80 transition-opacity duration-250"
@@ -47,6 +52,7 @@ export default function Gallery({ images }) {
             speed={500}
             download={false}
             dynamic={true}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             dynamicEl={images.map((img) => ({
               src: img.src,
             }))}
