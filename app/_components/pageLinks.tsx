@@ -3,8 +3,12 @@ import Link from "next/link";
 export default function PageLinks() {
   const navs = [
     {
-      href: "/landscapes",
-      directory: "Landscapes",
+      href: "/landscapes1",
+      directory: "Landscapes I",
+    },
+    {
+      href: "/landscapes2",
+      directory: "Landscapes II",
     },
     {
       href: "/portraits",

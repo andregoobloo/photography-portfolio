@@ -1,5 +1,9 @@
 import ContactForm from "../_components/contactForm";
 
+export const metadata = {
+  title: "Contact",
+};
+
 export default function Page() {
   return (
     <div className="mx-auto max-w-2xl px-4 ">

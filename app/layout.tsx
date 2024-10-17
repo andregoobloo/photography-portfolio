@@ -6,9 +6,11 @@ import Navbar from "./_components/navbar";
 const bacasime = Bacasime_Antique({ weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Andre Holzthum Photography",
-
-  description: "Photography website",
+  title: {
+    template: "Andre Holzthum | %s",
+    default: "Andre Holzthum Photography",
+  },
+  description: "Photography Website",
 };
 
 export default function RootLayout({
